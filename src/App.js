@@ -2,8 +2,24 @@
 import { useState, useEffect } from "react";
 
 import { StreamChat } from "stream-chat";
-import { Chat, Channel,Window,ChannelHeader,MessageInput,MessageList  } from "stream-chat-react";
+
+
+import { Chat, Channel,Window,ChannelHeader,MessageInput,MessageList, ChannelList } from "stream-chat-react";
 import 'stream-chat-react/dist/css/index.css'
+import styled  from "styled-components";
+import CustomChannelList from "./components/CustomChannelList";
+
+const Container = styled.div`
+display: flex;
+.left-column{
+width: 300px;
+}
+
+.right-column{
+flex: 1;
+}
+
+`;
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
@@ -43,7 +59,7 @@ function App() {
 
       client.connectUser(user,client.devToken(user.id));
       const channel = client.channel("team","general",{
-        name: "General",
+        name: "GeekStack",
         image:"https://i.pravatar.cc/300"
       })
 
@@ -67,13 +83,15 @@ function App() {
   return (
     <div>
       <Chat client={chatClient} theme={'messaging light'}>
-        <Channel channel={channel}>
-          <Window>
-            <ChannelHeader/>
-            <MessageList/>
-            <MessageInput/>
-          </Window>
-        </Channel>
+      <Container>
+        <div className="left-column">
+          <CustomChannelList/>
+        </div>
+        <div className="right-column">
+
+        </div>
+      </Container>
+     
       </Chat>
     </div>
   );
