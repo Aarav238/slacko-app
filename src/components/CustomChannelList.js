@@ -26,8 +26,8 @@ const Container = styled.div`
 `;
 export default function CustomChannelList() {
 
-    return <Container>
+    return (<><Container>
         <h2>Channels</h2>
-        <ChannelList  List={listProps => <ChannelListContainer {...listProps}/>}/> 
-    </Container>
+        <ChannelList  /> 
+    </Container></>)
 }

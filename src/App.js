@@ -7,6 +7,7 @@ import { StreamChat } from "stream-chat";
 import { Chat, Channel,Window,ChannelHeader,MessageInput,MessageList, ChannelList } from "stream-chat-react";
 import 'stream-chat-react/dist/css/index.css'
 import styled  from "styled-components";
+import ChannelBody from "./components/ChannelBody";
 import CustomChannelList from "./components/CustomChannelList";
 
 const Container = styled.div`
@@ -60,7 +61,7 @@ function App() {
       client.connectUser(user,client.devToken(user.id));
       const channel = client.channel("team","general",{
         name: "GeekStack",
-        image:"https://i.pravatar.cc/300"
+        image:"https://i.pravatar.cc/300",
       })
 
       await channel.create()
@@ -74,9 +75,9 @@ function App() {
 
     initChat()
 
-    return () => {
+    return () => {   
       if(chatClient) chatClient.disconnectUser();
-    }
+    };
   },[])
 
   if(!chatClient || !channel) return <></>
@@ -88,6 +89,9 @@ function App() {
           <CustomChannelList/>
         </div>
         <div className="right-column">
+        <Channel>
+          <ChannelBody/>
+        </Channel>
 
         </div>
       </Container>
