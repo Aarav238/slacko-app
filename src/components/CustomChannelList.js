@@ -1,5 +1,6 @@
 import { ChannelList } from "stream-chat-react";
 import styled from "styled-components";
+import ChannelListContainer from "./ChannelListContainer";
 const Container = styled.div`
     height: 100vh;
     background-color: #333;
@@ -27,6 +28,6 @@ export default function CustomChannelList() {
 
     return <Container>
         <h2>Channels</h2>
-        <ChannelList/> 
+        <ChannelList  List={listProp => <ChannelListContainer {...listProps}/>}/> 
     </Container>
 }
