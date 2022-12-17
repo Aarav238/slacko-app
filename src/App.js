@@ -52,6 +52,8 @@ function App() {
   const[chatClient, setChatClient] = useState(null);
   const[channel,setChannel] = useState(null);
 
+  const[addingChannel, setAddingChannel] = useState(false);
+
   useEffect(() => {
    async function initChat(){
       const client = StreamChat.getInstance(API_KEY);
