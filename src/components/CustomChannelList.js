@@ -5,12 +5,28 @@ const Container = styled.div`
     height: 100vh;
     background-color: #333;
     padding: 20px 10px;
-    h2{
+
+    .header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2{
         color: white;
         margin: 0 0 10px;
         font-size: 16px;
 
     }
+        button{
+            color: white;
+            font-size:20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+
+        }
+    }
+  
     .str-chat{
         height: max-content;
         &.str-chat-channel-list{
@@ -24,10 +40,14 @@ const Container = styled.div`
         }
     }
 `;
-export default function CustomChannelList() {
+export default function CustomChannelList({onClickAdd}) {
 
     return (<><Container>
+        <div className="header">
         <h2>Channels</h2>
+        <button onClick={onClickAdd} >+</button>
+        </div>
+       
         <ChannelList  /> 
     </Container></>)
 }

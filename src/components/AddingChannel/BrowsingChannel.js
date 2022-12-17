@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {  useChatContext } from "stream-chat-react";
 import styled from "styled-components";
+import ChannelItem from "./ChannelItem";
  const Container = styled.div`
  
  `
@@ -25,7 +26,13 @@ import styled from "styled-components";
     },[])
     
     return <Container>
-        {loadingChannels ? (<div className="loading-text">Loading Channels...</div>) : (channels.map((c) => <></>)
+        {loadingChannels ? (<div className="loading-text">Loading Channels...</div>) :
+         (  <ul>
+            {channels.map((c) => (
+                <ChannelItem key={c.cid} onJoin={null} />
+            ))}
+         </ul>
+            
         )}
     </Container>
     

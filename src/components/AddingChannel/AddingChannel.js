@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import BrowsingChannel from "./BrowsingChannel";
 const Container = styled.div`
 width: 100%;
 height: 100vh;
@@ -37,7 +38,7 @@ const TABS = [
 ];
 
 
-export default function addingChannel (){
+export default function AddingChannel (){
     const[activeTab, setActiveTab] = useState(TABS[0].id);
 
 
@@ -53,7 +54,7 @@ export default function addingChannel (){
                 </button>
             ))}
 
-            {activeTab === "browse" && <></>}
+            {activeTab === "browse" && <BrowsingChannel />}
             {activeTab === "create" && <></>}
         </div>
        </Container>

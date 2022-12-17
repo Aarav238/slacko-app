@@ -9,6 +9,7 @@ import 'stream-chat-react/dist/css/index.css'
 import styled  from "styled-components";
 import ChannelBody from "./components/ChannelBody";
 import CustomChannelList from "./components/CustomChannelList";
+import AddingChannel from "./components/AddingChannel/AddingChannel";
 
 const Container = styled.div`
 display: flex;
@@ -52,7 +53,7 @@ function App() {
   const[chatClient, setChatClient] = useState(null);
   const[channel,setChannel] = useState(null);
 
-  const[addingChannel, setAddingChannel] = useState(false);
+  const[addingTeamChannel, setAddingTeamChannel] = useState(false);
 
   useEffect(() => {
    async function initChat(){
@@ -88,10 +89,11 @@ function App() {
       <Chat client={chatClient} theme={'messaging light'}>
       <Container>
         <div className="left-column">
-          <CustomChannelList/>
+          <CustomChannelList onClickAdd={() => setAddingTeamChannel(true)}/>
         </div>
         <div className="right-column">
         <Channel>
+        {addingTeamChannel ? <AddingChannel /> : <ChannelBody/>}
           <ChannelBody/>
         </Channel>
 
