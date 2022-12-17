@@ -28,6 +28,6 @@ export default function CustomChannelList() {
 
     return <Container>
         <h2>Channels</h2>
-        <ChannelList  List={listProp => <ChannelListContainer {...listProps}/>}/> 
+        <ChannelList  List={listProps => <ChannelListContainer {...listProps}/>}/> 
     </Container>
 }
