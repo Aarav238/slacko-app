@@ -94,7 +94,7 @@ function App() {
         <div className="right-column">
         <Channel>
         {addingTeamChannel ? <AddingChannel /> : <ChannelBody/>}
-          <ChannelBody/>
+           
         </Channel>
 
         </div>
