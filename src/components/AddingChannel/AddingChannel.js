@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import BrowsingChannel from "./BrowsingChannel";
+import CreateChannel from "./CreateChannel";
 const Container = styled.div`
 width: 100%;
 height: 100vh;
@@ -56,7 +57,7 @@ export default function AddingChannel ({onClose}){
             </div>
 
             {activeTab === "browse" && <BrowsingChannel onClose={onClose} />}
-            {activeTab === "create" && <></>}
+            {activeTab === "create" && <CreateChannel  onClose={onClose}/>}
         
        </Container>
     )

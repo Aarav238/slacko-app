@@ -8,14 +8,30 @@ const Form = styled.form`
 `;
 
 export default function CreateChannel({onClose}){
-    const {client} = useChatContext;
+    const {client ,setActiveChannel} = useChatContext;
 
     const[name,setName] = useState("");
     const[image,setImage] = useState("");
     const[desc,setDesc] = useState("");
 
+    const createChannel = (e) => {
+        e.preventDefault();
+
+        const channelId = name.replace(/\s/g,'-').toLowerCase()
+
+        const channel = client.channel("team",channelId,{
+            name,
+            image,
+            desc,
+            member:[client.user.id],
+        });
+        setActiveChannel(channel);
+
+        onClose();
+    }
+
     return (
-        <Form>
+        <Form onSubmit={createChannel}>
         <div className="input-group">
         <label htmlFor="name">Channel Name</label>
             <input id="name" onChange={(e) => setName(e.target.value)}/>
