@@ -54,6 +54,7 @@ export default function AddingChannel ({onClose}){
                     {tab.name}
                 </button>
             ))}
+            <button onClick={onClose}>close</button>
             </div>
 
             {activeTab === "browse" && <BrowsingChannel onClose={onClose} />}

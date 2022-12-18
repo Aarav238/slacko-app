@@ -1,4 +1,5 @@
-import { ChannelList } from "stream-chat-react";
+import { useEffect, useState } from "react";
+import { ChannelList, useChatContext } from "stream-chat-react";
 import styled from "styled-components";
 import ChannelListContainer from "./ChannelListContainer";
 const Container = styled.div`
@@ -43,7 +44,22 @@ const Container = styled.div`
         }
     }
 `;
+
+const randomStr = () => Math.random().toString(36).substring(7);
 export default function CustomChannelList({onClickAdd}) {
+    const{client} = useChatContext();
+
+    const[channelListKey, setChannelListKey] = useState(randomStr());
+
+    const filters = {
+        members: {$in: [client.user.id]},
+    }
+
+    useEffect(() => {
+        client.on("member.added",() => {
+            setChannelListKey(randomStr())
+        })
+    },[])
 
     return (<><Container>
         <div className="header">
@@ -51,6 +67,7 @@ export default function CustomChannelList({onClickAdd}) {
         <button onClick={onClickAdd} >+</button>
         </div>
        
-        <ChannelList  /> 
+        <ChannelList
+         /> 
     </Container></>)
 }
