@@ -15,8 +15,8 @@ const Container = styled.div`
         color: white;
         margin: 0 0 10px;
         font-size: 16px;
+        }
 
-    }
         button{
             color: white;
             font-size:20px;
@@ -25,7 +25,10 @@ const Container = styled.div`
             cursor: pointer;
 
         }
+
     }
+     
+    
   
     .str-chat{
         height: max-content;
