@@ -4,6 +4,41 @@ import styled from "styled-components";
 
 
 const Form = styled.form`
+border: 1px solid #999;
+max-width: 500px;
+margin: 50px auto;
+padding: 20px;
+border-radius: 10px;
+
+.input-group{
+    margin-bottom: 20px;
+
+    label{
+        display: block;
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 15px;
+    }
+    input,textarea{
+        padding: 15px;
+        width: 100%;
+        background: transparent;
+        border: 1px solid #999;
+        color: #333;
+        font-size: 17px;
+    }
+}
+
+.submit{
+    button{
+        padding: 20px;
+        text-align: center;
+        background-color: black;
+        color: white;
+        width: 100%;
+    }
+
+}
 
 `;
 
