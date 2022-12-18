@@ -12,7 +12,7 @@ padding: 20px;
 
     button{
         margin-right: 20px;
-        padding: 10pc 20px;
+        padding: 10px 20px;
         cursor: pointer;
         border: 1px solid #333333;
 
@@ -38,7 +38,7 @@ const TABS = [
 ];
 
 
-export default function AddingChannel (){
+export default function AddingChannel ({onClose}){
     const[activeTab, setActiveTab] = useState(TABS[0].id);
 
 
@@ -53,10 +53,11 @@ export default function AddingChannel (){
                     {tab.name}
                 </button>
             ))}
+            </div>
 
-            {activeTab === "browse" && <BrowsingChannel />}
+            {activeTab === "browse" && <BrowsingChannel onClose={onClose} />}
             {activeTab === "create" && <></>}
-        </div>
+        
        </Container>
     )
 }

@@ -3,12 +3,18 @@ import {  useChatContext } from "stream-chat-react";
 import styled from "styled-components";
 import ChannelItem from "./ChannelItem";
  const Container = styled.div`
+ display: flex;
+
+ ul{
+  width: 100%;
+  padding: 0;
+ }
  
  `
 
- export default function BrowsingChannel(){
+ export default function BrowsingChannel({onClose}){
 
-    const {client} = useChatContext()
+    const {client,setActiveChannel} = useChatContext()
   
     const[channels,setChannels] = useState([])
 
@@ -19,17 +25,32 @@ import ChannelItem from "./ChannelItem";
 
             const filteredChannels = response.filter(c => c.type === "team")
             setChannels(filteredChannels)
-            setLoadingChannels(true);
+            setLoadingChannels(false);
         }
 
         fetchChannels()
     },[])
+
+    const joinChannel = (id) => {
+        const channel = channels.find(c  => c.id === id)
+
+        if (!channel) return onclose();
+
+        channel.addMembers([client.user.id])
+
+        setActiveChannel(channel)
+
+        onClose();
+
+        
+
+    }
     
     return <Container>
         {loadingChannels ? (<div className="loading-text">Loading Channels...</div>) :
          (  <ul>
             {channels.map((c) => (
-                <ChannelItem key={c.cid} onJoin={null} />
+                <ChannelItem key={c.cid} onJoin={joinChannel}  channel={c}/>
             ))}
          </ul>
             
