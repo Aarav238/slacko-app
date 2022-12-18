@@ -32,7 +32,7 @@ import ChannelItem from "./ChannelItem";
     },[])
 
     const joinChannel = (id) => {
-        const channel = channels.find(c  => c.id === id)
+        const channel = channels.find((c)  => c.id === id)
 
         if (!channel) return onclose();
 

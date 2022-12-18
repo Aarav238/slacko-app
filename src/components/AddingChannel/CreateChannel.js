@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useChatContext } from "stream-chat-react";
+import { useChatContext  } from "stream-chat-react";
 import styled from "styled-components";
 
 
@@ -43,7 +43,7 @@ border-radius: 10px;
 `;
 
 export default function CreateChannel({onClose}){
-    const {client ,setActiveChannel} = useChatContext;
+    const {client ,setActiveChannel} = useChatContext();
 
     const[name,setName] = useState("");
     const[image,setImage] = useState("");
@@ -52,16 +52,15 @@ export default function CreateChannel({onClose}){
     const createChannel = (e) => {
         e.preventDefault();
 
-        const channelId = name.replace(/\s/g,'-').toLowerCase()
+        const channelId = name.toLowerCase()
 
-        const channel = client.channel("team",channelId,{
+        const channel = client.channel('team',channelId,{
             name,
             image,
             desc,
-            member:[client.user.id],
+            members:[client.user.id],
         });
         setActiveChannel(channel);
-
         onClose();
     }
 
@@ -69,15 +68,15 @@ export default function CreateChannel({onClose}){
         <Form onSubmit={createChannel}>
         <div className="input-group">
         <label htmlFor="name">Channel Name</label>
-            <input id="name" onChange={(e) => setName(e.target.value)}/>
+        <input id="name" onChange={(e) => setName(e.target.value)}/>
         </div>
         <div className="input-group">
         <label htmlFor="image">Channel Image URL</label>
-            <input id="image" onChange={(e) => setImage(e.target.value)}/>
+        <input id="image" onChange={(e) => setImage(e.target.value)}/>
         </div>
         <div className="input-group">
         <label htmlFor="desc">Channel Description</label>
-            <textarea id="desc" onChange={(e) => setDesc(e.target.value)}/>
+        <textarea id="desc" onChange={(e) => setDesc(e.target.value)}/>
         </div>
 
         <div className="submit">
